@@ -25,8 +25,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href="#careers" className="text-foreground hover:underline">
-                  Careers
+                <a href="#about" className="text-foreground hover:underline">
+                  About
                 </a>
               </li>
             </ul>
