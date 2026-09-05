@@ -1,8 +1,8 @@
-import { SiteHeader } from '@/components/site-header'
-import { Hero } from '@/components/hero'
-import { Research } from '@/components/research'
-import { Principles } from '@/components/principles'
-import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from "@/components/site-header";
+import { Hero } from "@/components/hero";
+import { Research } from "@/components/research";
+import { Principles } from "@/components/principles";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function Page() {
   return (
@@ -10,10 +10,10 @@ export default function Page() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <Research />
-        <Principles />
+        {/*<Research />
+        <Principles />*/}
       </main>
       <SiteFooter />
     </div>
-  )
+  );
 }

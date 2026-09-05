@@ -8,8 +8,9 @@ export function SiteFooter() {
               Panha AI
             </span>
             <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
-              An independent laboratory advancing safe and reliable artificial
-              intelligence.
+              Panha AI is an independent project committed to advancing safe,
+              reliable, and useful artificial intelligence for the people of
+              Cambodia.
             </p>
           </div>
 
@@ -24,7 +25,10 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href="#principles" className="text-foreground hover:underline">
+                <a
+                  href="#principles"
+                  className="text-foreground hover:underline"
+                >
                   Principles
                 </a>
               </li>
@@ -46,16 +50,16 @@ export function SiteFooter() {
                   href="mailto:hello@meridian.research"
                   className="text-foreground hover:underline"
                 >
-                  hello@meridian.research
+                  N/A
                 </a>
               </li>
-              <li className="text-muted-foreground">San Francisco · London</li>
+              <li className="text-muted-foreground">Phnom Penh</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-16 flex flex-col justify-between gap-4 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} Meridian Research. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Panha AI</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground">
               Privacy
@@ -67,5 +71,5 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

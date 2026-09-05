@@ -199,6 +199,21 @@
     background: oklch(0.9 0.01 240 / 0.5);
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) .sky-bg {
+      background: linear-gradient(
+        to bottom,
+        oklch(0.28 0.05 250),
+        oklch(0.4 0.06 245) 55%,
+        oklch(0.52 0.06 240)
+      );
+    }
+
+    :root:not(.light) .cloud {
+      background: oklch(0.9 0.01 240 / 0.5);
+    }
+  }
+
   .cloud-1 {
     width: 40vw;
     height: 20vw;
