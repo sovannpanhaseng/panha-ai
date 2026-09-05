@@ -4,8 +4,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <span className="font-serif text-xl text-foreground">
-              Meridian Research
+            <span className="font-sans text-xl font-bold text-foreground">
+              Panha AI
             </span>
             <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
               An independent laboratory advancing safe and reliable artificial

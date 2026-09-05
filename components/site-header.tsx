@@ -12,8 +12,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a href="#" className="flex items-baseline gap-2">
-          <span className="font-serif text-xl tracking-tight text-foreground">
-            Meridian Research
+          <span className="font-sans text-xl font-bold tracking-tight text-foreground">
+            Panha AI
           </span>
         </a>
 
