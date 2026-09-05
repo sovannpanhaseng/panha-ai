@@ -14,8 +14,27 @@ export function Datasets() {
               <span className="absolute right-8 top-8 rounded-md bg-muted px-2 py-1 font-mono text-xs lowercase tracking-wide text-muted-foreground md:right-12 md:top-12">
                 khmer-pile
               </span>
-              <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border border-foreground/10 md:h-72 md:w-72" />
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full border border-foreground/10 md:h-36 md:w-36" />
+
+              {/* Dataset glyph */}
+              <div
+                aria-hidden="true"
+                className="absolute right-10 top-20 text-foreground/20 md:right-16 md:top-24"
+              >
+                <svg
+                  viewBox="0 0 96 96"
+                  className="h-28 w-28 md:h-40 md:w-40"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <ellipse cx="48" cy="22" rx="27" ry="11" />
+                  <path d="M21 22v22c0 6 12 11 27 11s27-5 27-11V22" />
+                  <path d="M21 44v22c0 6 12 11 27 11s27-5 27-11V44" />
+                  <path d="M21 22c0 6 12 11 27 11s27-5 27-11" />
+                  <path d="M21 44c0 6 12 11 27 11s27-5 27-11" />
+                </svg>
+              </div>
+
               <h2 className="relative max-w-sm font-serif text-5xl leading-[0.9] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
                 Khmer Pile
               </h2>
@@ -28,6 +47,7 @@ export function Datasets() {
                   extension with additional extraction and filtering.
                 </p>
               </div>
+
               <a
                 href="https://huggingface.co/datasets/sovannpanhaseng/khmer-pile"
                 target="_blank"
