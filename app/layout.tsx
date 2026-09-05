@@ -1,21 +1,11 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-})
-
 export const metadata: Metadata = {
-  title: 'Coming Soon',
-  description: 'Something new is on the way. Check back shortly.',
+  title: 'Meridian Research — Applied AI Laboratory',
+  description:
+    'Meridian Research is an independent laboratory advancing safe, reliable, and useful artificial intelligence.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -37,8 +27,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#08090c',
+  colorScheme: 'light',
+  themeColor: '#ece6d8',
 }
 
 export default function RootLayout({
@@ -47,10 +37,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={`dark bg-background ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
