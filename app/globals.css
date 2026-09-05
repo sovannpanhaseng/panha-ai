@@ -158,6 +158,14 @@
 }
 
 @layer base {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -175,6 +183,67 @@
       oklch(0.93 0.03 220)
     );
     overflow: hidden;
+  }
+
+  .about-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.93 0.03 220),
+      oklch(0.3 0.02 240) 20%,
+      oklch(0.03 0 0) 100%
+    );
+  }
+
+  .dark .about-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.52 0.06 240),
+      oklch(0.32 0.04 245) 42%,
+      oklch(0.16 0.012 258) 100%
+    );
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) .about-bg {
+      background: linear-gradient(
+        to bottom,
+        oklch(0.52 0.06 240),
+        oklch(0.32 0.04 245) 42%,
+        oklch(0.16 0.012 258) 100%
+      );
+    }
+  }
+
+  .sky-extended-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.72 0.12 240),
+      oklch(0.86 0.07 230) 30%,
+      oklch(0.3 0.02 240) 65%,
+      oklch(0.03 0 0) 100%
+    );
+  }
+
+  .dark .sky-extended-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.28 0.05 250),
+      oklch(0.4 0.06 245) 30%,
+      oklch(0.32 0.04 245) 65%,
+      oklch(0.55 0.01 258) 100%
+    );
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) .sky-extended-bg {
+      background: linear-gradient(
+        to bottom,
+        oklch(0.28 0.05 250),
+        oklch(0.4 0.06 245) 30%,
+        oklch(0.32 0.04 245) 65%,
+        oklch(0.55 0.01 258) 100%
+      );
+    }
   }
 
   .dark .sky-bg {
@@ -217,7 +286,7 @@
     width: 40vw;
     height: 20vw;
     top: 12%;
-    left: -30vw;
+    left: calc(-40vw - 1rem);
     animation: cloud-drift 55s linear infinite;
   }
 
@@ -225,40 +294,40 @@
     width: 30vw;
     height: 16vw;
     top: 42%;
-    left: -40vw;
+    left: calc(-30vw - 1rem);
     opacity: 0.75;
     animation: cloud-drift 78s linear infinite;
-    animation-delay: -20s;
+    animation-delay: 12s;
   }
 
   .cloud-3 {
     width: 50vw;
     height: 24vw;
     top: 62%;
-    left: -55vw;
+    left: calc(-50vw - 1rem);
     opacity: 0.6;
     animation: cloud-drift 95s linear infinite;
-    animation-delay: -50s;
+    animation-delay: 24s;
   }
 
   .cloud-4 {
     width: 24vw;
     height: 12vw;
     top: 26%;
-    left: -30vw;
+    left: calc(-24vw - 1rem);
     opacity: 0.7;
     animation: cloud-drift 66s linear infinite;
-    animation-delay: -35s;
+    animation-delay: 36s;
   }
 
   .cloud-5 {
     width: 36vw;
     height: 18vw;
     top: 78%;
-    left: -45vw;
+    left: calc(-36vw - 1rem);
     opacity: 0.55;
     animation: cloud-drift 88s linear infinite;
-    animation-delay: -12s;
+    animation-delay: 48s;
   }
 
   @keyframes cloud-drift {
