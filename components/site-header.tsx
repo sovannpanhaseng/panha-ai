@@ -1,3 +1,5 @@
+import { ThemeToggle } from '@/components/theme-toggle'
+
 const NAV = [
   { label: 'Research', href: '#research' },
   { label: 'Principles', href: '#principles' },
@@ -27,12 +29,15 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="border border-foreground px-4 py-2 text-sm text-foreground transition-colors hover:bg-foreground hover:text-primary-foreground"
-        >
-          Contact
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className="border border-foreground px-4 py-2 text-sm text-foreground transition-colors hover:bg-foreground hover:text-primary-foreground"
+          >
+            Contact
+          </a>
+        </div>
       </div>
     </header>
   )

@@ -168,6 +168,100 @@
 }
 
 @layer utilities {
+  .sky-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.72 0.12 240),
+      oklch(0.86 0.07 230) 55%,
+      oklch(0.93 0.03 220)
+    );
+    overflow: hidden;
+  }
+
+  .dark .sky-bg {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.28 0.05 250),
+      oklch(0.4 0.06 245) 55%,
+      oklch(0.52 0.06 240)
+    );
+  }
+
+  .cloud {
+    position: absolute;
+    border-radius: 9999px;
+    background: oklch(1 0 0 / 0.85);
+    filter: blur(40px);
+    will-change: transform;
+  }
+
+  .dark .cloud {
+    background: oklch(0.9 0.01 240 / 0.5);
+  }
+
+  .cloud-1 {
+    width: 40vw;
+    height: 20vw;
+    top: 12%;
+    left: -30vw;
+    animation: cloud-drift 55s linear infinite;
+  }
+
+  .cloud-2 {
+    width: 30vw;
+    height: 16vw;
+    top: 42%;
+    left: -40vw;
+    opacity: 0.75;
+    animation: cloud-drift 78s linear infinite;
+    animation-delay: -20s;
+  }
+
+  .cloud-3 {
+    width: 50vw;
+    height: 24vw;
+    top: 62%;
+    left: -55vw;
+    opacity: 0.6;
+    animation: cloud-drift 95s linear infinite;
+    animation-delay: -50s;
+  }
+
+  .cloud-4 {
+    width: 24vw;
+    height: 12vw;
+    top: 26%;
+    left: -30vw;
+    opacity: 0.7;
+    animation: cloud-drift 66s linear infinite;
+    animation-delay: -35s;
+  }
+
+  .cloud-5 {
+    width: 36vw;
+    height: 18vw;
+    top: 78%;
+    left: -45vw;
+    opacity: 0.55;
+    animation: cloud-drift 88s linear infinite;
+    animation-delay: -12s;
+  }
+
+  @keyframes cloud-drift {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(175vw);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cloud {
+      animation: none !important;
+    }
+  }
+
   .lava-blob {
     position: absolute;
     border-radius: 9999px;
