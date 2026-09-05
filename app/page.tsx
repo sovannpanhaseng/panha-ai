@@ -1,7 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { Research } from "@/components/research";
-import { Principles } from "@/components/principles";
+import { Models } from "@/components/models";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function Page() {
@@ -10,8 +9,7 @@ export default function Page() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        {/*<Research />
-        <Principles />*/}
+        <Models />
       </main>
       <SiteFooter />
     </div>
