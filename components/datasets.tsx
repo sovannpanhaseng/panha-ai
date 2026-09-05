@@ -21,11 +21,27 @@ export function Datasets() {
               </h2>
             </div>
 
-            <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16">
-              <p className="max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Khmer web text corpus, built on top of FineWeb-2&apos;s Khmer
-                extension with additional extraction and filtering.
-              </p>
+            <div className="flex flex-col justify-between gap-10 p-8 md:p-12 lg:p-16">
+              <div>
+                <p className="max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
+                  Khmer web text corpus, built on top of FineWeb-2&apos;s Khmer
+                  extension with additional extraction and filtering.
+                </p>
+              </div>
+              <a
+                href="https://huggingface.co/datasets/sovannpanhaseng/khmer-pile"
+                target="_blank"
+                rel="noreferrer"
+                className="group/link inline-flex w-fit items-center gap-3 border-b border-foreground pb-2 text-sm font-medium text-foreground transition-colors hover:border-muted-foreground hover:text-muted-foreground"
+              >
+                Explore the dataset
+                <span
+                  aria-hidden="true"
+                  className="text-base transition-transform duration-200 group-hover/link:translate-x-1"
+                >
+                  →
+                </span>
+              </a>
             </div>
           </article>
         </div>
