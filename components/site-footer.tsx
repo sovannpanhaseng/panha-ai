@@ -4,14 +4,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <span className="font-sans text-xl font-bold text-foreground">
+            <span className="font-sans text-3xl font-bold text-foreground">
               Panha AI
             </span>
-            <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
-              Panha AI is an independent project committed to advancing safe,
-              reliable, and useful artificial intelligence for the people of
-              Cambodia.
-            </p>
           </div>
 
           <div>
@@ -25,11 +20,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#principles"
-                  className="text-foreground hover:underline"
-                >
-                  Principles
+                <a href="#model" className="text-foreground hover:underline">
+                  Models
                 </a>
               </li>
               <li>
@@ -47,10 +39,10 @@ export function SiteFooter() {
             <ul className="mt-4 flex flex-col gap-3 text-sm">
               <li>
                 <a
-                  href="mailto:hello@meridian.research"
+                  href="mailto:sovannpanha359.seng@gmail.com"
                   className="text-foreground hover:underline"
                 >
-                  N/A
+                  sovannpanha359.seng@gmail.com
                 </a>
               </li>
               <li className="text-muted-foreground">Phnom Penh</li>
