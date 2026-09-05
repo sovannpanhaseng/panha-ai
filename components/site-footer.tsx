@@ -25,11 +25,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#principles"
-                  className="text-foreground hover:underline"
-                >
-                  Principles
+                <a href="#model" className="text-foreground hover:underline">
+                  Models
                 </a>
               </li>
               <li>
@@ -47,10 +44,10 @@ export function SiteFooter() {
             <ul className="mt-4 flex flex-col gap-3 text-sm">
               <li>
                 <a
-                  href="mailto:hello@meridian.research"
+                  href="mailto:sovannpanha359.seng@gmail.com"
                   className="text-foreground hover:underline"
                 >
-                  N/A
+                  sovannpanha359.seng@gmail.com
                 </a>
               </li>
               <li className="text-muted-foreground">Phnom Penh</li>
