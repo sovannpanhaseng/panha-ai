@@ -74,8 +74,7 @@
   --chart-3: oklch(0.6 0.01 70);
   --chart-4: oklch(0.72 0.014 78);
   --chart-5: oklch(0.82 0.016 82);
-  /* square corners for a crisp corporate look */
-  --radius: 0rem;
+  --radius: 0.5rem;
   --sidebar: oklch(0.96 0.012 84);
   --sidebar-foreground: oklch(0.19 0.006 60);
   --sidebar-primary: oklch(0.19 0.006 60);
