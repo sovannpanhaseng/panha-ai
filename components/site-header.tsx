@@ -1,11 +1,10 @@
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV = [
-  { label: 'Research', href: '#research' },
-  { label: 'Principles', href: '#principles' },
-  { label: 'About', href: '#about' },
-  { label: 'Careers', href: '#careers' },
-]
+  { label: "Research", href: "#research" },
+  { label: "Principles", href: "#principles" },
+  { label: "About", href: "#about" },
+];
 
 export function SiteHeader() {
   return (
@@ -40,5 +39,5 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }
