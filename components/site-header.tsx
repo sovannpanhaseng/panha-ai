@@ -1,39 +1,32 @@
+import { LogoMark } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV = [
-  { label: "Research", href: "#research" },
-  { label: "Models", href: "#models" },
   { label: "About", href: "#about" },
+  { label: "Models", href: "#models" },
+  { label: "Datasets", href: "#datasets" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-8 px-6">
-        <a href="#" className="flex items-baseline gap-2">
-          <span className="font-sans text-xl font-bold tracking-tight text-foreground">
-            Panha AI
-          </span>
+    <header className="site-header">
+      <div className="site-header__inner">
+        <a className="brand" href="#top" aria-label="Panha AI — back to top">
+          <LogoMark className="brand__mark" compact />
+          <span className="brand__word">Panha AI</span>
         </a>
 
-        <nav className="ml-auto hidden items-center gap-8 md:flex">
+        <nav className="site-nav" aria-label="Primary">
           {NAV.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
+            <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-3 md:ml-0">
+        <div className="site-header__actions">
           <ThemeToggle />
-          <a
-            href="#contact"
-            className="rounded-lg border border-foreground px-4 py-2 text-sm text-foreground transition-colors hover:bg-foreground hover:text-primary-foreground"
-          >
+          <a className="button-contact" href="#contact">
             Contact
           </a>
         </div>

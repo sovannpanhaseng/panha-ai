@@ -13,20 +13,21 @@ export function PageToc() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const sectionElements = SECTIONS.map(({ id }) =>
-      document.getElementById(id),
-    ).filter((section): section is HTMLElement => section !== null);
+    const sections = SECTIONS.map(({ id }) => document.getElementById(id)).filter(
+      (section): section is HTMLElement => section !== null,
+    );
 
-    if (sectionElements.length === 0) {
+    if (sections.length === 0) {
       return;
     }
 
+    let frame = 0;
+
     const update = () => {
       const marker = window.innerHeight * 0.35;
+      let current = sections[0];
 
-      let current = sectionElements[0];
-
-      for (const section of sectionElements) {
+      for (const section of sections) {
         if (section.getBoundingClientRect().top <= marker) {
           current = section;
         } else {
@@ -36,51 +37,48 @@ export function PageToc() {
 
       setActiveSection(current.id);
 
-      const firstSection = sectionElements[0];
-      const lastSection = sectionElements[sectionElements.length - 1];
-
-      const start = firstSection.getBoundingClientRect().top + window.scrollY;
-      const end = lastSection.getBoundingClientRect().bottom + window.scrollY;
-
-      const scrollableHeight = end - start;
+      const first = sections[0];
+      const last = sections[sections.length - 1];
+      const start = first.getBoundingClientRect().top + window.scrollY;
+      const end = last.getBoundingClientRect().bottom + window.scrollY;
+      const scrollable = end - start;
       const distance = window.scrollY - start;
 
       setProgress(
-        scrollableHeight > 0
-          ? Math.min(100, Math.max(0, (distance / scrollableHeight) * 100))
+        scrollable > 0
+          ? Math.min(100, Math.max(0, (distance / scrollable) * 100))
           : 0,
       );
     };
 
-    update();
+    const onScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(update);
+    };
 
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
   return (
-    <aside className="pointer-events-none absolute inset-x-0 top-[calc(100svh-4rem)] bottom-0 z-20 hidden lg:block">
-      <div className="sticky top-96 mx-auto max-w-6xl px-6">
-        <nav
-          aria-label="Page sections"
-          className="pointer-events-auto relative w-full max-w-xl"
-        >
-          <div
-            className="absolute left-[3px] top-2 bottom-2 w-0.5 bg-foreground/15"
-            aria-hidden="true"
-          >
+    <aside className="toc">
+      <div className="toc__sticky">
+        <nav className="toc__nav" aria-label="Page sections">
+          <div className="toc__rail" aria-hidden="true">
             <span
-              className="absolute left-0 top-0 w-0.5 bg-foreground transition-[height] duration-150"
+              className="toc__progress"
               style={{ height: `${progress}%` }}
             />
           </div>
 
-          <ul className="relative flex flex-col gap-5 text-base">
+          <ul>
             {SECTIONS.map((section) => {
               const isActive = activeSection === section.id;
 
@@ -89,29 +87,9 @@ export function PageToc() {
                   <a
                     href={`#${section.id}`}
                     aria-current={isActive ? "location" : undefined}
-                    className="group flex items-center gap-2"
                   >
-                    <span
-                      className={[
-                        "relative z-10 h-2 w-2 shrink-0 rounded-full",
-                        "border border-background transition-all duration-150",
-                        isActive
-                          ? "scale-125 bg-foreground"
-                          : "bg-muted-foreground/50 group-hover:bg-foreground",
-                      ].join(" ")}
-                      aria-hidden="true"
-                    />
-
-                    <span
-                      className={[
-                        "whitespace-nowrap transition-colors duration-150",
-                        isActive
-                          ? "font-semibold text-foreground"
-                          : "text-muted-foreground group-hover:text-foreground",
-                      ].join(" ")}
-                    >
-                      {section.label}
-                    </span>
+                    <span className="toc__dot" aria-hidden="true" />
+                    {section.label}
                   </a>
                 </li>
               );

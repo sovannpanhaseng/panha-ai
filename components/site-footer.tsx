@@ -1,65 +1,56 @@
+import { LogoMark } from "@/components/logo";
+
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer id="contact" className="bg-background">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+    <footer className="site-footer" id="contact">
+      <div className="site-footer__inner">
+        <div className="site-footer__top">
           <div>
-            <span className="font-sans text-3xl font-bold text-foreground">
-              Panha AI
-            </span>
+            <a className="brand" href="#top" aria-label="Panha AI — back to top">
+              <LogoMark className="brand__mark" compact />
+              <span className="brand__word">Panha AI</span>
+            </a>
+
+            <p className="site-footer__tagline">
+              Independent AI research and open language resources for Cambodia.
+            </p>
           </div>
 
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Explore
-            </h4>
-            <ul className="mt-4 flex flex-col gap-3 text-sm">
-              <li>
-                <a href="#research" className="text-foreground hover:underline">
-                  Research
-                </a>
-              </li>
-              <li>
-                <a href="#model" className="text-foreground hover:underline">
-                  Models
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-foreground hover:underline">
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+          <div className="site-footer__cols">
+            <div>
+              <h4>Explore</h4>
+              <ul className="site-footer__links">
+                <li>
+                  <a href="#about">About</a>
+                </li>
+                <li>
+                  <a href="#models">Models</a>
+                </li>
+                <li>
+                  <a href="#datasets">Datasets</a>
+                </li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Contact
-            </h4>
-            <ul className="mt-4 flex flex-col gap-3 text-sm">
-              <li>
-                <a
-                  href="mailto:sovannpanha359.seng@gmail.com"
-                  className="text-foreground hover:underline"
-                >
-                  sovannpanha359.seng@gmail.com
-                </a>
-              </li>
-              <li className="text-muted-foreground">Phnom Penh</li>
-            </ul>
+            <div>
+              <h4>Contact</h4>
+              <ul className="site-footer__links">
+                <li>
+                  <a href="mailto:sovannpanha359.seng@gmail.com">
+                    sovannpanha359.seng@gmail.com
+                  </a>
+                </li>
+                <li className="is-muted">Phnom Penh, Cambodia</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} Panha AI</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-foreground">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-foreground">
-              Terms
-            </a>
-          </div>
+        <div className="site-footer__bottom">
+          <p>© {year} Panha AI</p>
+          <p>Frontier AI for Cambodia.</p>
         </div>
       </div>
     </footer>

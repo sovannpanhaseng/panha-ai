@@ -6,30 +6,17 @@ export const metadata: Metadata = {
   title: "Panha AI — Frontier AI for Cambodia",
   description:
     "Panha AI is an independent project committed to advancing safe, reliable, and useful artificial intelligence for the people of Cambodia.",
-  generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: "/icon.svg",
     apple: "/apple-icon.png",
   },
 };
 
 export const viewport: Viewport = {
-  colorScheme: "light",
-  themeColor: "#ece6d8",
+  colorScheme: "light dark",
 };
+
+const themeScript = `(function(){try{var stored=localStorage.getItem("theme");var theme=stored==="light"||stored==="dark"?stored:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",theme);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",theme==="dark"?"#0d0d0b":"#f3eee3");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
 
 export default function RootLayout({
   children,
@@ -37,8 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-background">
-      <body className="font-sans antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#f3eee3" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
