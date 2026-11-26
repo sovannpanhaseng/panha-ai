@@ -271,19 +271,19 @@ main {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: 9px;
   flex: none;
 }
 
 .brand__mark {
-  width: 54px;
+  width: 38px;
   height: auto;
   color: var(--logo-green);
   --logo-hole: var(--paper);
 }
 
 .brand__word {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -1021,7 +1021,7 @@ main {
   }
 
   .brand__mark {
-    width: 46px;
+    width: 34px;
   }
 }
 
@@ -1035,11 +1035,11 @@ main {
   }
 
   .brand__mark {
-    width: 40px;
+    width: 30px;
   }
 
   .brand__word {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
   .site-header__inner {

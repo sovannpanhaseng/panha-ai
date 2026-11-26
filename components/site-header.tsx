@@ -26,7 +26,10 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <ThemeToggle />
-          <a className="button-contact" href="#contact">
+          <a
+            className="button-contact"
+            href="mailto:sovannpanha359.seng@gmail.com"
+          >
             Contact
           </a>
         </div>
