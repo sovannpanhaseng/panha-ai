@@ -169,19 +169,26 @@ export function SiteHeader() {
                     onMouseLeave={scheduleClose}
                   >
                     <div className="nav-card">
-                      {menu.items.map((item) => (
-                        <a
-                          key={item}
-                          className="nav-card__link"
-                          href="#"
-                          onClick={handlePlaceholderClick}
-                        >
-                          <span>{item}</span>
-                          <span className="nav-card__arrow" aria-hidden="true">
-                            →
-                          </span>
-                        </a>
-                      ))}
+                      <div className="nav-card__inner">
+                        <div className="nav-card__links">
+                          {menu.items.map((item) => (
+                            <a
+                              key={item}
+                              className="nav-card__link"
+                              href="#"
+                              onClick={handlePlaceholderClick}
+                            >
+                              <span>{item}</span>
+                              <span
+                                className="nav-card__arrow"
+                                aria-hidden="true"
+                              >
+                                →
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
