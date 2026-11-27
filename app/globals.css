@@ -1928,6 +1928,36 @@ main {
   text-align: left;
 }
 
+.about-page__body h2 {
+  margin: 0.8em 0 0;
+  color: #000;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.about-page__body h2:first-child {
+  margin-top: 0;
+}
+
+.about-page__body ul {
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.about-page__body li + li {
+  margin-top: 0.5em;
+}
+
+.about-page__body li::marker {
+  color: var(--muted);
+}
+
+.about-page__body strong {
+  color: #000;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .about-page__inner {
     width: 100%;
