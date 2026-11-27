@@ -31,6 +31,11 @@ export function SiteHeader() {
   const [pinned, setPinned] = useState(false);
   const closeTimer = useRef<number | null>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const panelRefs = useRef<Record<MenuKey, HTMLDivElement | null>>({
+    about: null,
+    research: null,
+  });
+  const panelAnimations = useRef<Partial<Record<MenuKey, Animation>>>({});
 
   function clearCloseTimer() {
     if (closeTimer.current !== null) {
@@ -116,9 +121,63 @@ export function SiteHeader() {
     return () => clearCloseTimer();
   }, []);
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    (Object.keys(MENUS) as MenuKey[]).forEach((key) => {
+      const panel = panelRefs.current[key];
+
+      if (!panel) {
+        return;
+      }
+
+      const card = panel.firstElementChild as HTMLElement | null;
+      const isOpen = openMenu === key;
+      const targetHeight = isOpen
+        ? (card?.getBoundingClientRect().height ?? panel.scrollHeight)
+        : 0;
+      const currentHeight = panel.getBoundingClientRect().height;
+
+      panelAnimations.current[key]?.cancel();
+
+      if (reduceMotion || Math.abs(targetHeight - currentHeight) < 1) {
+        panel.style.height = isOpen ? "auto" : "0px";
+        return;
+      }
+
+      const animation = panel.animate(
+        [
+          { height: `${currentHeight}px` },
+          { height: `${targetHeight}px` },
+        ],
+        {
+          duration: 280,
+          easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          fill: "forwards",
+        },
+      );
+
+      panelAnimations.current[key] = animation;
+
+      animation.onfinish = () => {
+        if (panelAnimations.current[key] !== animation) {
+          return;
+        }
+
+        panel.style.height = isOpen ? "auto" : "0px";
+        animation.cancel();
+      };
+    });
+  }, [openMenu]);
+
   return (
     <>
-      <header className="site-header" ref={headerRef}>
+      <header
+        className={`site-header${openMenu ? " is-expanded" : ""}`}
+        ref={headerRef}
+      >
         <div className="site-header__inner">
           <Link className="brand" href="/" aria-label="Panha AI — home">
             {/* Logo hidden for now. */}
@@ -146,48 +205,35 @@ export function SiteHeader() {
                     onClick={() => handleTriggerClick(key)}
                   >
                     {menu.label}
-                    <svg
-                      className="nav-chevron"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="m3 4.5 3 3 3-3" />
-                    </svg>
                   </button>
 
                   <div
                     id={`nav-panel-${key}`}
                     data-menu={key}
+                    ref={(node) => {
+                      panelRefs.current[key] = node;
+                    }}
                     className={`nav-panel${isOpen ? " is-open" : ""}`}
                     aria-hidden={!isOpen}
+                    inert={!isOpen}
                     onMouseEnter={clearCloseTimer}
                     onMouseLeave={scheduleClose}
                   >
                     <div className="nav-card">
                       <div className="nav-card__inner">
-                        <div className="nav-card__links">
+                        <ul className="nav-card__links">
                           {menu.items.map((item) => (
-                            <a
-                              key={item}
-                              className="nav-card__link"
-                              href="#"
-                              onClick={handlePlaceholderClick}
-                            >
-                              <span>{item}</span>
-                              <span
-                                className="nav-card__arrow"
-                                aria-hidden="true"
+                            <li key={item}>
+                              <a
+                                className="nav-card__link"
+                                href="#"
+                                onClick={handlePlaceholderClick}
                               >
-                                →
-                              </span>
-                            </a>
+                                {item}
+                              </a>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
                       </div>
                     </div>
                   </div>

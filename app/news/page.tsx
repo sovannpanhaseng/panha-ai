@@ -42,11 +42,6 @@ export default function NewsPage() {
     <main id="main" className="news-page">
       <div className="news-page__inner">
         <header className="news-head">
-          <p className="eyebrow">
-            <span className="eyebrow__dot" aria-hidden="true" />
-            Panha AI
-          </p>
-
           <h1 className="news-title">News</h1>
 
           <p className="news-lede">
