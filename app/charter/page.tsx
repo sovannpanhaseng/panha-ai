@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CharterDesktopToc, CharterMobileToc } from "@/components/charter-toc";
 import { CHARTER } from "@/lib/charter";
 
 export const metadata: Metadata = {
@@ -8,8 +9,18 @@ export const metadata: Metadata = {
 };
 
 export default function CharterPage() {
+  const sections = [
+    { id: "preamble", label: "Preamble" },
+    ...CHARTER.chapters.map(chapter => ({
+      id: `chapter-${chapter.roman.toLowerCase()}`,
+      label: chapter.title,
+      roman: chapter.roman
+    }))
+  ];
+
   return (
     <main id="main" className="charter-page">
+      <CharterMobileToc sections={sections} />
       <div className="charter-page__inner">
         <header className="charter-hero">
           <h1 className="charter-hero__title">The Panha Charter</h1>
@@ -20,20 +31,7 @@ export default function CharterPage() {
         </header>
 
         <div className="charter-layout">
-          <aside className="charter-toc" aria-label="Charter contents">
-            <div className="charter-toc__sticky">
-              <p className="charter-toc__label">Contents</p>
-              <nav aria-label="Charter sections">
-                <a href="#preamble">Preamble</a>
-                {CHARTER.chapters.map(chapter => (
-                  <a key={chapter.roman} href={`#chapter-${chapter.roman.toLowerCase()}`}>
-                    <span>{chapter.roman}</span>
-                    {chapter.title}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
+          <CharterDesktopToc sections={sections} />
 
           <article className="charter-document">
             <section id="preamble" className="charter-section">
