@@ -4,7 +4,7 @@ import { PlaceholderLink } from "@/components/placeholder-link";
 
 const ABOUT_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Objectives", href: null },
+  { label: "Objectives", href: "/objectives" },
   { label: "The Panha Charter", href: null },
 ];
 const RESEARCH_LINKS = [

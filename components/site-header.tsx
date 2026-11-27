@@ -24,7 +24,7 @@ const MENUS: Record<MenuKey, { label: string; items: MenuItem[] }> = {
     label: "About",
     items: [
       { label: "About", href: "/about" },
-      { label: "Objectives" },
+      { label: "Objectives", href: "/objectives" },
       { label: "The Panha Charter" },
     ],
   },
