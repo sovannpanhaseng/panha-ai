@@ -1615,7 +1615,8 @@ main {
     --gutter: clamp(20px, 4vw, 32px);
   }
 
-  .article-page__inner {
+  .article-page__inner,
+  .about-page__inner {
     width: 100%;
   }
 }
@@ -1878,6 +1879,59 @@ main {
 
 .home-news .news-card--link:hover {
   border-color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   About
+   -------------------------------------------------------------------------- */
+
+.about-page {
+  padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 10vw, 120px);
+}
+
+.about-page__inner {
+  width: 50vw;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.about-page__head {
+  text-align: center;
+}
+
+.about-page__title {
+  max-width: 16ch;
+  margin: 24px auto 0;
+  color: #000;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.about-page__lede {
+  max-width: 46ch;
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.about-page__body {
+  display: grid;
+  gap: 1.2em;
+  max-width: 68ch;
+  margin: clamp(32px, 5vw, 48px) auto 0;
+  color: #111;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.75;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .about-page__inner {
+    width: 100%;
+  }
 }
 
 /* --------------------------------------------------------------------------

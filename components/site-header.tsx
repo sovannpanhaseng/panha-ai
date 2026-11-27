@@ -22,7 +22,11 @@ type MenuItem = {
 const MENUS: Record<MenuKey, { label: string; items: MenuItem[] }> = {
   about: {
     label: "About",
-    items: [{ label: "Objectives" }, { label: "The Panha Charter" }],
+    items: [
+      { label: "About", href: "/about" },
+      { label: "Objectives" },
+      { label: "The Panha Charter" },
+    ],
   },
   research: {
     label: "Research",

@@ -33,40 +33,4 @@ export const NEWS_ITEMS: NewsItem[] = [
       "Introducing Bayon, a 100-million-parameter Khmer-focused language model built to explore native-language specialization from the ground up.",
     href: "/news/2026-07-02",
   },
-  {
-    title: "Release notes",
-    date: "Nov 2026",
-    category: "Releases",
-    excerpt: "Placeholder release notes for the next Panha AI update.",
-  },
-  {
-    title: "Version history",
-    date: "Oct 2026",
-    category: "Releases",
-    excerpt: "Placeholder release archive and version history.",
-  },
-  {
-    title: "Website changelog",
-    date: "Nov 2026",
-    category: "Changelogs",
-    excerpt: "Placeholder notes on site and navigation changes.",
-  },
-  {
-    title: "Model changelog",
-    date: "Oct 2026",
-    category: "Changelogs",
-    excerpt: "Placeholder notes on model updates and evaluations.",
-  },
-  {
-    title: "General update",
-    date: "Nov 2026",
-    category: "General",
-    excerpt: "Placeholder announcement from the Panha AI team.",
-  },
-  {
-    title: "Field notes",
-    date: "Sep 2026",
-    category: "General",
-    excerpt: "Placeholder notes on research, data, and language.",
-  },
 ];

@@ -2,7 +2,11 @@ import Link from "next/link";
 import { LogoMark } from "@/components/logo";
 import { PlaceholderLink } from "@/components/placeholder-link";
 
-const ABOUT_LINKS = ["Objectives", "The Panha Charter"];
+const ABOUT_LINKS = [
+  { label: "About", href: "/about" },
+  { label: "Objectives", href: null },
+  { label: "The Panha Charter", href: null },
+];
 const RESEARCH_LINKS = [
   { label: "Papers", href: "/advancements#papers" },
   { label: "Models", href: "/advancements#models" },
@@ -46,10 +50,16 @@ export function SiteFooter() {
               <h2 className="site-footer__heading">About</h2>
               <ul className="site-footer__links">
                 {ABOUT_LINKS.map((item) => (
-                  <li key={item}>
-                    <PlaceholderLink className="site-footer__link">
-                      {item}
-                    </PlaceholderLink>
+                  <li key={item.label}>
+                    {item.href ? (
+                      <Link className="site-footer__link" href={item.href}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <PlaceholderLink className="site-footer__link">
+                        {item.label}
+                      </PlaceholderLink>
+                    )}
                   </li>
                 ))}
               </ul>
