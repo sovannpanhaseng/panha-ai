@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
     apple: "/apple-icon.png",
   },
+  verification: {
+    google: "eiQfOrgyA9WBQJ0KrA1ZC1k8xZ1to2toP9gI1WTBxXo",
+  },
 };
 
 export const viewport: Viewport = {
