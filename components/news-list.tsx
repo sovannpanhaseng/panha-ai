@@ -29,6 +29,8 @@ const ITEMS: NewsItem[] = [
     title: "Panha AI introduces Bayon, our first Language Model",
     date: "July 2, 2026",
     category: "Releases",
+    excerpt:
+      "Introducing Bayon, a 100-million-parameter Khmer-focused language model built to explore native-language specialization from the ground up.",
     href: "/news/2026-07-02",
   },
   {
