@@ -1244,19 +1244,20 @@ main {
 }
 
 .article-page__inner {
-  width: 100%;
-  max-width: var(--max-width);
+  width: 50vw;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
 .article-head {
-  max-width: 72ch;
+  max-width: none;
+  text-align: center;
 }
 
 .article-meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px 18px;
   color: var(--muted);
   font-size: 0.8125rem;
@@ -1268,22 +1269,25 @@ main {
 }
 
 .article-title {
-  max-width: 18ch;
-  margin-top: 24px;
+  max-width: 20ch;
+  margin: 24px auto 0;
   color: #000;
   font-size: clamp(2.75rem, 6vw, 5rem);
   line-height: 0.98;
   letter-spacing: -0.035em;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .article-body {
   display: grid;
   gap: 1.2em;
   max-width: 68ch;
-  margin-top: clamp(32px, 5vw, 48px);
+  margin: clamp(32px, 5vw, 48px) auto 0;
   color: #111;
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.75;
+  text-align: left;
 }
 
 .article-body cite {
@@ -1303,10 +1307,11 @@ main {
 
 .article-back {
   max-width: 68ch;
-  margin-top: clamp(32px, 5vw, 48px);
+  margin: clamp(32px, 5vw, 48px) auto 0;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 0.9375rem;
+  text-align: center;
 }
 
 .article-back a {
@@ -1370,6 +1375,10 @@ main {
   :root {
     --max-width: 100%;
     --gutter: clamp(20px, 4vw, 32px);
+  }
+
+  .article-page__inner {
+    width: 100%;
   }
 }
 

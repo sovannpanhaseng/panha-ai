@@ -23,7 +23,7 @@ const ITEMS: NewsItem[] = [
     category: "General",
     excerpt:
       "Panha AI is participating in AACL-IJCNLP 2026 with Bayon, our Khmer-focused language model and research submission.",
-    href: "/2026-10-01",
+    href: "/news/2026-10-01",
   },
   {
     title: "Release notes",

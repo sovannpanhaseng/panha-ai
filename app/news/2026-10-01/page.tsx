@@ -18,29 +18,27 @@ export default function ArticlePage() {
               <span>General</span>
             </div>
 
-            <h1 className="article-title">
-              Panha AI at AACL-IJCNLP 2026
-            </h1>
+            <h1 className="article-title">Panha AI at AACL-IJCNLP 2026</h1>
           </header>
 
           <div className="article-body">
             <p>
-              Panha AI is pleased to participate in the Asia-Pacific Chapter
-              of the Association for Computational Linguistics (AACL-IJCNLP
-              2026), representing Cambodia and contributing to the advancement
-              of Khmer language technology and research.
+              Panha AI is pleased to participate in the 5th Conference of the
+              Asia-Pacific Chapter of the Association for Computational
+              Linguistics (AACL-IJCNLP 2026), representing Cambodia and
+              contributing to the advancement of Khmer language technology and
+              research.
             </p>
 
             <p>
-              Our participation features Bayon, our Khmer-focused language
-              model and research submission, titled{" "}
+              Our participation features Bayon, our Khmer-focused language model
+              and research submission, titled{" "}
               <cite>
                 “Small Model, Native Design: Exploring Linguistic Purity and
                 Reduced Language Bleeding in a 100M Khmer Language Model.”
               </cite>{" "}
               The work explores how language-specific model design can improve
-              Khmer language generation while reducing unwanted language
-              mixing.
+              Khmer language generation while reducing unwanted language mixing.
             </p>
 
             <p>
