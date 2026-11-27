@@ -17,10 +17,6 @@ export default function AboutPage() {
           </p>
 
           <h1 className="about-page__title">Building intelligence with purpose</h1>
-
-          <p className="about-page__lede">
-            Independent AI research and open language resources for Cambodia.
-          </p>
         </header>
 
         <div className="about-page__body">

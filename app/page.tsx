@@ -47,6 +47,37 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <section className="home-about" aria-labelledby="home-about-title">
+        <div className="home-about__inner">
+          <h2 className="home-about__title" id="home-about-title">
+            About
+          </h2>
+
+          <div className="home-about__body">
+            <p>
+              Panha AI is an independent Cambodian AI research project advancing
+              Khmer-first language models, natural language processing, open
+              datasets, and language technology.
+            </p>
+
+            <p>
+              Since 2025, Panha AI has focused on developing high-quality NLP
+              datasets alongside increasingly capable language models. Its
+              research covers Khmer language understanding, text generation,
+              linguistic evaluation, and the data infrastructure needed to
+              improve language technologies.
+            </p>
+
+            <p>
+              Through projects including Bayon, Panha language models, and
+              KhmerPile, Panha AI works to expand the availability of open
+              research resources for Khmer and contribute to the broader
+              development of artificial intelligence in Cambodia.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
