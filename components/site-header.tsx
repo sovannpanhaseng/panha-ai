@@ -28,14 +28,13 @@ const MENUS: Record<MenuKey, { label: string; items: string[] }> = {
 export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
+  const [displayMenu, setDisplayMenu] = useState<MenuKey>("about");
   const [pinned, setPinned] = useState(false);
   const closeTimer = useRef<number | null>(null);
   const headerRef = useRef<HTMLElement>(null);
-  const panelRefs = useRef<Record<MenuKey, HTMLDivElement | null>>({
-    about: null,
-    research: null,
-  });
-  const panelAnimations = useRef<Partial<Record<MenuKey, Animation>>>({});
+  const panelRef = useRef<HTMLDivElement>(null);
+  const panelAnimation = useRef<Animation | null>(null);
+  const panelFallback = useRef<number | null>(null);
 
   function clearCloseTimer() {
     if (closeTimer.current !== null) {
@@ -65,6 +64,7 @@ export function SiteHeader() {
     clearCloseTimer();
 
     if (openMenu !== key) {
+      setDisplayMenu(key);
       setOpenMenu(key);
 
       if (pinned) {
@@ -80,6 +80,7 @@ export function SiteHeader() {
     }
 
     clearCloseTimer();
+    setDisplayMenu(key);
     setOpenMenu(key);
     setPinned(true);
   }
@@ -122,61 +123,82 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    const panel = panelRef.current;
+
+    if (!panel) {
+      return;
+    }
+
+    const panelEl = panel;
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const card = panel.firstElementChild as HTMLElement | null;
+    const isOpen = openMenu !== null;
+    const targetHeight = isOpen
+      ? (card?.getBoundingClientRect().height ?? panel.scrollHeight)
+      : 0;
+    const currentHeight = panel.getBoundingClientRect().height;
 
-    (Object.keys(MENUS) as MenuKey[]).forEach((key) => {
-      const panel = panelRefs.current[key];
+    panelAnimation.current?.cancel();
 
-      if (!panel) {
+    if (panelFallback.current !== null) {
+      window.clearTimeout(panelFallback.current);
+      panelFallback.current = null;
+    }
+
+    if (reduceMotion || Math.abs(targetHeight - currentHeight) < 1) {
+      panel.style.height = `${targetHeight}px`;
+      return;
+    }
+
+    const animation = panel.animate(
+      [{ height: `${currentHeight}px` }, { height: `${targetHeight}px` }],
+      {
+        duration: 240,
+        easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+        fill: "forwards",
+      },
+    );
+
+    panelAnimation.current = animation;
+
+    function settle() {
+      if (panelAnimation.current !== animation) {
         return;
       }
 
-      const card = panel.firstElementChild as HTMLElement | null;
-      const isOpen = openMenu === key;
-      const targetHeight = isOpen
-        ? (card?.getBoundingClientRect().height ?? panel.scrollHeight)
-        : 0;
-      const currentHeight = panel.getBoundingClientRect().height;
+      panelEl.style.height = `${targetHeight}px`;
+      panelAnimation.current = null;
+      animation.cancel();
 
-      panelAnimations.current[key]?.cancel();
-
-      if (reduceMotion || Math.abs(targetHeight - currentHeight) < 1) {
-        panel.style.height = isOpen ? "auto" : "0px";
-        return;
+      if (panelFallback.current !== null) {
+        window.clearTimeout(panelFallback.current);
+        panelFallback.current = null;
       }
+    }
 
-      const animation = panel.animate(
-        [
-          { height: `${currentHeight}px` },
-          { height: `${targetHeight}px` },
-        ],
-        {
-          duration: 280,
-          easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
-          fill: "forwards",
-        },
-      );
+    panelFallback.current = window.setTimeout(settle, 360);
+    animation.onfinish = settle;
+  }, [openMenu, displayMenu]);
 
-      panelAnimations.current[key] = animation;
+  useEffect(() => {
+    return () => {
+      panelAnimation.current?.cancel();
 
-      animation.onfinish = () => {
-        if (panelAnimations.current[key] !== animation) {
-          return;
-        }
-
-        panel.style.height = isOpen ? "auto" : "0px";
-        animation.cancel();
-      };
-    });
-  }, [openMenu]);
+      if (panelFallback.current !== null) {
+        window.clearTimeout(panelFallback.current);
+      }
+    };
+  }, []);
 
   return (
     <>
       <header
         className={`site-header${openMenu ? " is-expanded" : ""}`}
         ref={headerRef}
+        onMouseEnter={clearCloseTimer}
+        onMouseLeave={scheduleClose}
       >
         <div className="site-header__inner">
           <Link className="brand" href="/" aria-label="Panha AI — home">
@@ -195,48 +217,16 @@ export function SiteHeader() {
                   key={key}
                   className={`nav-item${isOpen ? " is-open" : ""}`}
                   onMouseEnter={() => handleHover(key)}
-                  onMouseLeave={scheduleClose}
                 >
                   <button
                     type="button"
                     className="nav-trigger"
                     aria-expanded={isOpen}
-                    aria-controls={`nav-panel-${key}`}
+                    aria-controls="nav-panel"
                     onClick={() => handleTriggerClick(key)}
                   >
                     {menu.label}
                   </button>
-
-                  <div
-                    id={`nav-panel-${key}`}
-                    data-menu={key}
-                    ref={(node) => {
-                      panelRefs.current[key] = node;
-                    }}
-                    className={`nav-panel${isOpen ? " is-open" : ""}`}
-                    aria-hidden={!isOpen}
-                    inert={!isOpen}
-                    onMouseEnter={clearCloseTimer}
-                    onMouseLeave={scheduleClose}
-                  >
-                    <div className="nav-card">
-                      <div className="nav-card__inner">
-                        <ul className="nav-card__links">
-                          {menu.items.map((item) => (
-                            <li key={item}>
-                              <a
-                                className="nav-card__link"
-                                href="#"
-                                onClick={handlePlaceholderClick}
-                              >
-                                {item}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               );
             })}
@@ -251,6 +241,34 @@ export function SiteHeader() {
               News
             </Link>
           </nav>
+        </div>
+
+        <div
+          id="nav-panel"
+          ref={panelRef}
+          className={`nav-panel${openMenu ? " is-open" : ""}`}
+          aria-hidden={!openMenu}
+          inert={!openMenu}
+          onMouseEnter={clearCloseTimer}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="nav-card">
+            <div className="nav-card__inner">
+              <ul className="nav-card__links">
+                {MENUS[displayMenu].items.map((item) => (
+                  <li key={item}>
+                    <a
+                      className="nav-card__link"
+                      href="#"
+                      onClick={handlePlaceholderClick}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </header>
 
