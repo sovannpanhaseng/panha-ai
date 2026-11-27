@@ -14,14 +14,24 @@ import {
 
 type MenuKey = "about" | "research";
 
-const MENUS: Record<MenuKey, { label: string; items: string[] }> = {
+type MenuItem = {
+  label: string;
+  href?: string;
+};
+
+const MENUS: Record<MenuKey, { label: string; items: MenuItem[] }> = {
   about: {
     label: "About",
-    items: ["Objectives", "The Panha Charter"],
+    items: [{ label: "Objectives" }, { label: "The Panha Charter" }],
   },
   research: {
     label: "Research",
-    items: ["Papers", "Models", "Datasets", "Chat"],
+    items: [
+      { label: "Papers", href: "/advancements#papers" },
+      { label: "Models", href: "/advancements#models" },
+      { label: "Datasets", href: "/advancements#datasets" },
+      { label: "Chat" },
+    ],
   },
 };
 
@@ -200,7 +210,11 @@ export function SiteHeader() {
         className={`site-header${openMenu ? " is-expanded" : ""}`}
         ref={headerRef}
         onMouseEnter={clearCloseTimer}
-        onMouseLeave={scheduleClose}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== "touch") {
+            scheduleClose();
+          }
+        }}
       >
         <div className="site-header__inner">
           <Link className="brand" href="/" aria-label="Panha AI — home">
@@ -218,7 +232,11 @@ export function SiteHeader() {
                 <div
                   key={key}
                   className={`nav-item${isOpen ? " is-open" : ""}`}
-                  onMouseEnter={() => handleHover(key)}
+                  onPointerEnter={(event) => {
+                    if (event.pointerType !== "touch") {
+                      handleHover(key);
+                    }
+                  }}
                 >
                   <button
                     type="button"
@@ -252,20 +270,34 @@ export function SiteHeader() {
           aria-hidden={!openMenu}
           inert={!openMenu}
           onMouseEnter={clearCloseTimer}
-          onMouseLeave={scheduleClose}
+          onPointerLeave={(event) => {
+            if (event.pointerType !== "touch") {
+              scheduleClose();
+            }
+          }}
         >
           <div className="nav-card">
             <div className="nav-card__inner">
               <ul className="nav-card__links">
                 {MENUS[displayMenu].items.map((item) => (
-                  <li key={item}>
-                    <a
-                      className="nav-card__link"
-                      href="#"
-                      onClick={handlePlaceholderClick}
-                    >
-                      {item}
-                    </a>
+                  <li key={item.label}>
+                    {item.href ? (
+                      <Link
+                        className="nav-card__link"
+                        href={item.href}
+                        onClick={closeMenu}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        className="nav-card__link"
+                        href="#"
+                        onClick={handlePlaceholderClick}
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
