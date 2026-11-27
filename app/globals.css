@@ -2187,12 +2187,18 @@ main {
 }
 
 .charter-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+  align-self: start;
   min-width: 0;
+  max-height: calc(100svh - var(--header-height) - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
 }
 
 .charter-toc__sticky {
-  position: sticky;
-  top: calc(var(--header-height) + 24px);
+  position: static;
 }
 
 .charter-toc__label {
@@ -2389,7 +2395,11 @@ main {
   }
 
   .charter-toc {
+    position: static;
     order: -1;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
     padding-bottom: 22px;
     border-bottom: 1px solid var(--line);
   }
