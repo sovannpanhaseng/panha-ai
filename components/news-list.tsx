@@ -12,7 +12,7 @@ type NewsItem = {
   title: string;
   date: string;
   category: NewsCategory;
-  excerpt: string;
+  excerpt?: string;
   href?: string;
 };
 
@@ -24,6 +24,12 @@ const ITEMS: NewsItem[] = [
     excerpt:
       "Panha AI is participating in AACL-IJCNLP 2026 with Bayon, our Khmer-focused language model and research submission.",
     href: "/news/2026-10-01",
+  },
+  {
+    title: "Panha AI introduces Bayon, our first Language Model",
+    date: "July 2, 2026",
+    category: "Releases",
+    href: "/news/2026-07-02",
   },
   {
     title: "Release notes",
@@ -104,7 +110,9 @@ export function NewsList() {
               </div>
 
               <h2 className="news-card__title">{item.title}</h2>
-              <p className="news-card__excerpt">{item.excerpt}</p>
+              {item.excerpt ? (
+                <p className="news-card__excerpt">{item.excerpt}</p>
+              ) : null}
             </>
           );
 
