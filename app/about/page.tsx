@@ -11,11 +11,6 @@ export default function AboutPage() {
     <main id="main" className="about-page">
       <div className="about-page__inner">
         <header className="about-page__head">
-          <p className="eyebrow">
-            <span className="eyebrow__dot" aria-hidden="true" />
-            About Panha AI
-          </p>
-
           <h1 className="about-page__title">Building intelligence with purpose</h1>
         </header>
 
