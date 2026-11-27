@@ -20,10 +20,17 @@ type BarChartProps = {
   title: string;
   note: string;
   max: number;
+  ticks: number[];
+  unit?: string;
   bars: Bar[];
 };
 
-function BarChart({ title, note, max, bars }: BarChartProps) {
+function BarChart({ title, note, max, ticks, unit = "", bars }: BarChartProps) {
+  const chartStyle = {
+    "--chart-columns": bars.length,
+    "--chart-min-width": `${40 + bars.length * 72}px`,
+  } as CSSProperties;
+
   return (
     <figure className="article-chart">
       <figcaption className="article-chart__caption">
@@ -31,31 +38,62 @@ function BarChart({ title, note, max, bars }: BarChartProps) {
         <span className="article-chart__note">{note}</span>
       </figcaption>
 
-      <div className="article-chart__plot">
-        {bars.map((bar) => {
-          const style: CSSProperties = {
-            width: `${(bar.value / max) * 100}%`,
-            background: bar.color,
-            minWidth: bar.value > 0 ? 2 : 0,
-          };
+      <div className="article-chart__scroll">
+        <div className="article-chart__chart" style={chartStyle}>
+          <div className="article-chart__axis" aria-hidden="true">
+            {ticks.map((tick) => (
+              <span
+                className="article-chart__tick"
+                key={tick}
+                style={{ bottom: `${(tick / max) * 100}%` }}
+              >
+                {tick}
+                {unit}
+              </span>
+            ))}
+          </div>
 
-          return (
-            <div className="article-chart__row" key={bar.label}>
-              <div className="article-chart__label">
+          <div className="article-chart__plot">
+            <div className="article-chart__grid" aria-hidden="true">
+              {ticks.map((tick) => (
+                <span
+                  className={`article-chart__gridline${
+                    tick === 0 ? " is-base" : ""
+                  }`}
+                  key={tick}
+                  style={{ bottom: `${(tick / max) * 100}%` }}
+                />
+              ))}
+            </div>
+
+            <div className="article-chart__bars">
+              {bars.map((bar) => (
+                <div className="article-chart__column" key={bar.label}>
+                  <span className="article-chart__value">{bar.display}</span>
+                  <span
+                    className="article-chart__bar"
+                    style={{
+                      height: `${(bar.value / max) * 100}%`,
+                      minHeight: bar.value > 0 ? 2 : 0,
+                      background: bar.color,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="article-chart__labels">
+            {bars.map((bar) => (
+              <div className="article-chart__label" key={bar.label}>
                 <span>{bar.label}</span>
                 {bar.detail ? (
                   <span className="article-chart__detail">{bar.detail}</span>
                 ) : null}
               </div>
-
-              <div className="article-chart__track" aria-hidden="true">
-                <span className="article-chart__bar" style={style} />
-              </div>
-
-              <span className="article-chart__value">{bar.display}</span>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+        </div>
       </div>
     </figure>
   );
@@ -66,7 +104,8 @@ export function TokenizerChart() {
     <BarChart
       title="Tokens on the tokenizer development corpus"
       note="Billions of tokens. Lower is better."
-      max={6.021}
+      max={7}
+      ticks={[0, 2, 4, 6]}
       bars={[
         {
           label: "Bayon",
@@ -97,7 +136,9 @@ export function LanguageBleedChart() {
     <BarChart
       title="Language Bleed Ratio"
       note="Share of generated tokens outside Khmer Unicode ranges. Lower is better."
-      max={18.25}
+      max={20}
+      ticks={[0, 5, 10, 15, 20]}
+      unit="%"
       bars={[
         {
           label: "Bayon",
@@ -127,7 +168,9 @@ export function InstructionTuningChart() {
     <BarChart
       title="Bayon before and after instruction tuning"
       note="Same tokenizer and evaluation protocol. Lower is better."
-      max={80.59}
+      max={100}
+      ticks={[0, 25, 50, 75, 100]}
+      unit="%"
       bars={[
         {
           label: "Bayon (pre-SFT)",
@@ -151,7 +194,8 @@ export function TaskEvaluationChart() {
     <BarChart
       title="Khmer historical and regional QA"
       note="Correct answers out of 201. Higher is better; parameter counts are shown under each model."
-      max={201}
+      max={200}
+      ticks={[0, 50, 100, 150, 200]}
       bars={[
         {
           label: "GLM-4.7",

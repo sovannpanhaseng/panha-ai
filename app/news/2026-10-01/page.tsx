@@ -50,14 +50,7 @@ export default function ArticlePage() {
 
             <p>
               Learn more about Bayon:{" "}
-              <a
-                href="https://huggingface.co/attentionlab/bayon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Bayon Model Release
-              </a>
-              .
+              <Link href="/news/2026-07-02">Bayon Model Release</Link>.
             </p>
           </div>
 
