@@ -8,23 +8,23 @@
 
   --paper: #f3eee3;
   --paper-soft: #faf7ef;
-  --ink: #15130f;
-  --ink-soft: #403b33;
-  --muted: #6f675b;
-  --line: rgba(21, 19, 15, 0.14);
-  --line-strong: rgba(21, 19, 15, 0.3);
+  --ink: #1f5a45;
+  --ink-soft: #3c6654;
+  --muted: #4f6d5e;
+  --line: rgba(31, 90, 69, 0.16);
+  --line-strong: rgba(31, 90, 69, 0.34);
 
   --surface: #faf7ef;
-  --panel: #080a08;
+  --panel: #0c231a;
   --panel-ink: #f2eee4;
-  --panel-muted: #9aa39a;
+  --panel-muted: #a9b8af;
 
   --logo-green: #00d17a;
   --green-text: #067a4b;
 
-  --footer-bg: #0a0a09;
+  --footer-bg: #0c231a;
   --footer-ink: #f1ede2;
-  --footer-muted: #928c80;
+  --footer-muted: #a8b5ac;
   --footer-line: rgba(241, 237, 226, 0.14);
 
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
@@ -38,28 +38,6 @@
   --gutter: clamp(20px, 4vw, 32px);
   --header-height: 72px;
   --radius: 14px;
-}
-
-[data-theme="dark"] {
-  color-scheme: dark;
-
-  --paper: #0d0d0b;
-  --paper-soft: #141412;
-  --ink: #f0ece1;
-  --ink-soft: #cbc4b6;
-  --muted: #9b9487;
-  --line: rgba(240, 236, 225, 0.14);
-  --line-strong: rgba(240, 236, 225, 0.3);
-
-  --surface: #141412;
-  --panel: #050605;
-  --panel-ink: #f2eee4;
-  --panel-muted: #939b93;
-
-  --green-text: #4be3a4;
-
-  --footer-bg: #060605;
-  --footer-line: rgba(241, 237, 226, 0.12);
 }
 
 /* --------------------------------------------------------------------------
@@ -133,7 +111,7 @@ svg {
 
 ::selection {
   background: var(--logo-green);
-  color: #06130c;
+  color: #062a1d;
 }
 
 :focus-visible {
@@ -331,39 +309,6 @@ main {
   margin-left: 4px;
 }
 
-.theme-toggle {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  color: var(--ink);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: var(--paper-soft);
-  border-color: var(--ink);
-}
-
-.theme-toggle svg {
-  width: 16px;
-  height: 16px;
-}
-
-.theme-toggle__sun {
-  display: none;
-}
-
-[data-theme="dark"] .theme-toggle__sun {
-  display: block;
-}
-
-[data-theme="dark"] .theme-toggle__moon {
-  display: none;
-}
-
 .button-contact {
   display: inline-flex;
   align-items: center;
@@ -438,7 +383,7 @@ main {
   border: 1px solid var(--line);
   border-radius: 18px;
   background:
-    radial-gradient(circle at 50% 46%, #0f1a13 0%, var(--panel) 62%);
+    radial-gradient(circle at 50% 46%, #14352a 0%, var(--panel) 62%);
   isolation: isolate;
 }
 
@@ -451,8 +396,8 @@ main {
     linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
   background-size: 48px 48px;
-  -webkit-mask-image: radial-gradient(circle at center, #000 10%, transparent 72%);
-  mask-image: radial-gradient(circle at center, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at center, #123227 10%, transparent 72%);
+  mask-image: radial-gradient(circle at center, #123227 10%, transparent 72%);
 }
 
 .brand-panel::after {
@@ -472,7 +417,7 @@ main {
   width: 80%;
   height: auto;
   color: var(--logo-green);
-  --logo-hole: #0a0d0a;
+  --logo-hole: #0c231a;
 }
 
 .brand-panel__meta {
@@ -652,7 +597,7 @@ main {
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--ink-soft);
-  box-shadow: 0 24px 60px -38px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px -38px rgba(9, 45, 31, 0.35);
 }
 
 .card__visual {
@@ -677,8 +622,8 @@ main {
     linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 40px 40px;
-  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
-  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, #123227, transparent 85%);
+  mask-image: linear-gradient(to bottom, #123227, transparent 85%);
   pointer-events: none;
 }
 

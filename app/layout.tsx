@@ -13,10 +13,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "light dark",
+  colorScheme: "light",
+  themeColor: "#f3eee3",
 };
-
-const themeScript = `(function(){try{var stored=localStorage.getItem("theme");var theme=stored==="light"||stored==="dark"?stored:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",theme);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",theme==="dark"?"#0d0d0b":"#f3eee3");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
 
 export default function RootLayout({
   children,
@@ -24,11 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="theme-color" content="#f3eee3" />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+    <html lang="en">
       <body>
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}

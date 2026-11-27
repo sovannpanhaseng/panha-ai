@@ -1,5 +1,4 @@
 import { LogoMark } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV = [
   { label: "About", href: "#about" },
@@ -25,7 +24,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__actions">
-          <ThemeToggle />
           <a
             className="button-contact"
             href="mailto:sovannpanha359.seng@gmail.com"
