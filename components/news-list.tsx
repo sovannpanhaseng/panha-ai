@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const CATEGORIES = ["All", "Releases", "Changelogs", "General"] as const;
@@ -12,9 +13,18 @@ type NewsItem = {
   date: string;
   category: NewsCategory;
   excerpt: string;
+  href?: string;
 };
 
 const ITEMS: NewsItem[] = [
+  {
+    title: "Panha AI at AACL-IJCNLP 2026",
+    date: "October 1, 2026",
+    category: "General",
+    excerpt:
+      "Panha AI is participating in AACL-IJCNLP 2026 with Bayon, our Khmer-focused language model and research submission.",
+    href: "/2026-10-01",
+  },
   {
     title: "Release notes",
     date: "Nov 2026",
@@ -85,17 +95,33 @@ export function NewsList() {
       </aside>
 
       <div className="news-feed">
-        {items.map((item) => (
-          <article className="news-card" key={item.title}>
-            <div className="news-card__meta">
-              <span className="news-card__date">{item.date}</span>
-              <span className="news-card__category">{item.category}</span>
-            </div>
+        {items.map((item) => {
+          const card = (
+            <>
+              <div className="news-card__meta">
+                <span className="news-card__date">{item.date}</span>
+                <span className="news-card__category">{item.category}</span>
+              </div>
 
-            <h2 className="news-card__title">{item.title}</h2>
-            <p className="news-card__excerpt">{item.excerpt}</p>
-          </article>
-        ))}
+              <h2 className="news-card__title">{item.title}</h2>
+              <p className="news-card__excerpt">{item.excerpt}</p>
+            </>
+          );
+
+          return item.href ? (
+            <Link
+              className="news-card news-card--link"
+              href={item.href}
+              key={item.title}
+            >
+              {card}
+            </Link>
+          ) : (
+            <article className="news-card" key={item.title}>
+              {card}
+            </article>
+          );
+        })}
       </div>
     </div>
   );

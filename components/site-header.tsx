@@ -27,6 +27,8 @@ const MENUS: Record<MenuKey, { label: string; items: string[] }> = {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const isNewsPage =
+    pathname === "/news" || /^\/\d{4}-\d{2}-\d{2}$/.test(pathname);
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
   const [displayMenu, setDisplayMenu] = useState<MenuKey>("about");
   const [pinned, setPinned] = useState(false);
@@ -234,7 +236,7 @@ export function SiteHeader() {
             <Link
               className="nav-link"
               href="/news"
-              aria-current={pathname === "/news" ? "page" : undefined}
+              aria-current={isNewsPage ? "page" : undefined}
               onMouseEnter={closeMenu}
               onClick={closeMenu}
             >
