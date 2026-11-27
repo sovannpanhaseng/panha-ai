@@ -1,5 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  InstructionTuningChart,
+  LanguageBleedChart,
+  TaskEvaluationChart,
+  TokenizerChart,
+} from "@/components/bayon-charts";
 
 export const metadata: Metadata = {
   title: "Panha AI introduces Bayon, our first Language Model — Panha AI",
@@ -88,6 +94,8 @@ export default function BayonReleasePage() {
               3.057 billion using o200k_base.
             </p>
 
+            <TokenizerChart />
+
             <p>
               This represents a 4.33× reduction in token count against Qwen2.5
               and a 2.20× reduction against o200k_base.
@@ -165,38 +173,15 @@ export default function BayonReleasePage() {
               evaluation passes.
             </p>
 
-            <p>For comparison:</p>
-
-            <div className="article-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Model</th>
-                    <th scope="col">Language Bleed Ratio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Bayon</td>
-                    <td>0.06%</td>
-                  </tr>
-                  <tr>
-                    <td>Qwen-SEA-LION-v4.5-27B-IT</td>
-                    <td>0.54%</td>
-                  </tr>
-                  <tr>
-                    <td>GPT-OSS-120B</td>
-                    <td>18.25%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <LanguageBleedChart />
 
             <p>
               An important control experiment evaluated Bayon&apos;s pretrained
               checkpoint before instruction tuning. Using the same tokenizer and
               evaluation protocol, its LBR was 80.59%.
             </p>
+
+            <InstructionTuningChart />
 
             <p>
               This comparison provides evidence that the tokenizer alone does
@@ -224,54 +209,7 @@ export default function BayonReleasePage() {
               compared with 4 for Qwen2.5-0.5B-Instruct.
             </p>
 
-            <div className="article-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Model</th>
-                    <th scope="col">Parameters</th>
-                    <th scope="col">Correct Answers</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Bayon (pre-SFT)</td>
-                    <td>100M</td>
-                    <td>0/201</td>
-                  </tr>
-                  <tr>
-                    <td>Qwen2.5-Instruct</td>
-                    <td>500M</td>
-                    <td>4/201</td>
-                  </tr>
-                  <tr>
-                    <td>Bayon (instruction-tuned)</td>
-                    <td>100M</td>
-                    <td>15/201</td>
-                  </tr>
-                  <tr>
-                    <td>GPT-OSS</td>
-                    <td>120B</td>
-                    <td>54/201</td>
-                  </tr>
-                  <tr>
-                    <td>Qwen-SEA-LION-v4.5-IT</td>
-                    <td>27B</td>
-                    <td>88/201</td>
-                  </tr>
-                  <tr>
-                    <td>Gemma 4 IT</td>
-                    <td>31B</td>
-                    <td>103/201</td>
-                  </tr>
-                  <tr>
-                    <td>GLM-4.7</td>
-                    <td>—</td>
-                    <td>117/201</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <TaskEvaluationChart />
 
             <p>
               Bayon&apos;s evaluation required a question to be answered
@@ -285,41 +223,6 @@ export default function BayonReleasePage() {
               The results suggest improved localized task behavior following
               instruction tuning, rather than broad Khmer factual competence.
             </p>
-
-            <h2>What Comes Next</h2>
-
-            <p>Bayon is an early contribution to a broader effort.</p>
-
-            <p>
-              At Panha AI, we believe developing Khmer language technology
-              requires more than releasing individual model checkpoints.
-              Researchers need access to the underlying resources that make
-              independent development possible.
-            </p>
-
-            <p>
-              Our ongoing work includes Khmer-focused pretraining datasets,
-              supervised fine-tuning datasets, decision models and datasets,
-              evaluation benchmarks, and the infrastructure code needed to train
-              and evaluate language models.
-            </p>
-
-            <p>
-              KhmerPile, our filtered Khmer pretraining dataset, is one part of
-              this effort. By making these resources available, we aim to give
-              researchers and developers the ability to build upon previous
-              releases, experiment with different architectures, and train their
-              own Khmer language models.
-            </p>
-
-            <p>
-              Bayon demonstrates one approach to this work: a compact model
-              built around the linguistic characteristics of Khmer, developed
-              under constrained compute, and released as a foundation for
-              further research.
-            </p>
-
-            <p>Panha AI advances sovereign Khmer AI.</p>
 
             <h2>Availability</h2>
 
