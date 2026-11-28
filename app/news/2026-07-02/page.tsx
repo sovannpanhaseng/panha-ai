@@ -263,6 +263,12 @@ export default function BayonReleasePage() {
                 Reduced Language Bleeding in a 100M Khmer Language Model.
               </cite>
             </p>
+
+            <p>
+              For a concise summary of Bayon&apos;s architecture, compute
+              requirements, and evaluation results, see the{" "}
+              <Link href="/models/bayon">Bayon model card</Link>.
+            </p>
           </div>
 
           <p className="article-back">

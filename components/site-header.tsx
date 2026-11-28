@@ -24,6 +24,7 @@ const MENUS: Record<MenuKey, { label: string; items: MenuItem[] }> = {
     label: "About",
     items: [
       { label: "About", href: "/about" },
+      { label: "Khmer AI", href: "/khmer-ai" },
       { label: "Objectives", href: "/objectives" },
       { label: "The Panha Charter", href: "/charter" },
     ],
@@ -31,9 +32,10 @@ const MENUS: Record<MenuKey, { label: string; items: MenuItem[] }> = {
   research: {
     label: "Research",
     items: [
-      { label: "Papers", href: "/advancements#papers" },
-      { label: "Models", href: "/advancements#models" },
-      { label: "Datasets", href: "/advancements#datasets" },
+      { label: "Explore Research", href: "/advancements" },
+      { label: "Papers", href: "/publications" },
+      { label: "Models", href: "/models" },
+      { label: "Datasets", href: "/datasets" },
       { label: "Chat" },
     ],
   },
@@ -43,6 +45,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const isNewsPage =
     pathname === "/news" || pathname.startsWith("/news/");
+  const isSafetyPage = pathname === "/safety-impact";
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
   const [displayMenu, setDisplayMenu] = useState<MenuKey>("about");
   const [pinned, setPinned] = useState(false);
@@ -254,6 +257,20 @@ export function SiteHeader() {
                 </div>
               );
             })}
+
+            <Link
+              className="nav-link"
+              href="/safety-impact"
+              aria-label="Safety & Impact"
+              aria-current={isSafetyPage ? "page" : undefined}
+              onMouseEnter={closeMenu}
+              onClick={closeMenu}
+            >
+              <span className="nav-link__safety-full">Safety &amp; Impact</span>
+              <span className="nav-link__safety-short" aria-hidden="true">
+                Safety
+              </span>
+            </Link>
 
             <Link
               className="nav-link"

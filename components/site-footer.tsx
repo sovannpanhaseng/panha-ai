@@ -4,13 +4,15 @@ import { PlaceholderLink } from "@/components/placeholder-link";
 
 const ABOUT_LINKS = [
   { label: "About", href: "/about" },
+  { label: "Khmer AI", href: "/khmer-ai" },
   { label: "Objectives", href: "/objectives" },
   { label: "The Panha Charter", href: "/charter" },
 ];
 const RESEARCH_LINKS = [
-  { label: "Papers", href: "/advancements#papers" },
-  { label: "Models", href: "/advancements#models" },
-  { label: "Datasets", href: "/advancements#datasets" },
+  { label: "Explore Research", href: "/advancements" },
+  { label: "Papers", href: "/publications" },
+  { label: "Models", href: "/models" },
+  { label: "Datasets", href: "/datasets" },
   { label: "Chat", href: null },
 ];
 const NEWS_LINKS = [
@@ -94,6 +96,17 @@ export function SiteFooter() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            <div className="site-footer__group">
+              <h2 className="site-footer__heading">Safety</h2>
+              <ul className="site-footer__links">
+                <li>
+                  <Link className="site-footer__link" href="/safety-impact">
+                    Safety &amp; Impact
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>
