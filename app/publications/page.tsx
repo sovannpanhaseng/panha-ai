@@ -24,13 +24,6 @@ export default function PublicationsPage() {
           {PUBLICATION_ITEMS.map((item) => (
             <NewsCard key={item.title} {...item} titleAs="h3" />
           ))}
-
-          <p>
-            Panha AI&apos;s papers document the technical decisions behind its
-            language models and data resources. They cover tokenization,
-            training, linguistic evaluation, and the limitations of current
-            methods for Khmer.
-          </p>
         </ResearchSection>
 
         <ResearchSection id="research-areas" title="Research Areas">
